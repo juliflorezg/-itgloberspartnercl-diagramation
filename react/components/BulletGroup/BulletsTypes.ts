@@ -1,12 +1,14 @@
-export type BulletsSchema = Array<{
-  image: string
-  bulletTitle: string
-  link: Link
-}>
+export type BulletsSchema = Array<Bullet>
 
-export interface Link {
+export type Bullet = {
+  image: string
+  bulletTitle?: string
+  link?: LinkProps
+}
+
+export interface LinkProps {
   url: string
-  attributeNoFollow: boolean
+  attributeNoFollow?: boolean
   attributeTitle?: string
   openNewTab?: boolean
   newTab?: boolean

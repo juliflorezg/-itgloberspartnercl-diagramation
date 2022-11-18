@@ -1,6 +1,7 @@
 import React from 'react'
 // import { Link, useRuntime } from 'vtex.render-runtime'
-import {LinkProps} from './BulletsTypes'
+import { Link } from 'vtex.render-runtime'
+import { LinkProps } from './BulletsTypes'
 // import { useRuntime } from 'vtex.render-runtime'
 // import {useCssHandles} from 'vtex.css-handles'
 
@@ -10,11 +11,30 @@ type Props = {
   link: LinkProps
 }
 
-export const Bullet = ({src, bulletTitle, link}: Props) => {
+export const Bullet = ({ src, bulletTitle, link }: Props) => {
   console.log("Datos para mi bullet", src, bulletTitle, link);
   return (
-    <div>Mi propio bullet</div>
-  )
+    <div>
+      <Link to={link.url}>
+        <p>Mi imagen {src}</p>
+        <p>{bulletTitle}</p>
+      </Link>
+    </div>
+    )
+}
+
+Bullet.schema = {
+  title: "bullet",
+  type: "object",
+  properties: {
+    src: {
+      title: "imagen de bullet",
+      type: "string",
+      widget: {
+        "ui:widget": "image-uploader"
+      }
+    }
+  }
 }
 
 

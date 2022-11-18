@@ -1,26 +1,28 @@
 {
   "definitions": {
-    "BulletGroup":{ 
+    "BulletGroup":{
       "title" : "Bullets Group",
       "type": "array",
       "items": {
-        "image": {
+        "properties": {
+          "image": {
           "title": "Image",
           "$ref" : "app:vtex.native-types#/definitions/url",
           "default": "",
           "widget": {
             "ui:widget": "image-uploader"
           }
-        },
-        "bulletTitle": {
-          "title": "Bullet title",
-          "$ref": "app:vtex.native-types#/definitions/text",
-          "default": ""
-        },
-        "link": {
-          "title": "Bullet link",
-          "$ref": "app:vtex.native-types#/definitions/link",
-          "default": ""
+          },
+          "bulletTitle": {
+            "title": "Bullet title",
+            "$ref": "app:vtex.native-types#/definitions/text",
+            "default": ""
+          },
+          "link": {
+            "title": "Bullet link",
+            "$ref": "app:vtex.native-types#/definitions/link",
+            "default": ""
+          }
         }
       }
     }

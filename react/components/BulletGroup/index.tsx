@@ -3,6 +3,7 @@ import { BulletsSchema } from './BulletsTypes'
 import { useDevice } from 'vtex.device-detector'
 import { useListContext, ListContextProvider } from 'vtex.list-context'
 import { getBulletAsTSXList } from './modules/bulletsAsList'
+import { useCssHandles } from 'vtex.css-handles'
 
 
 export interface BulletGroupProps {
@@ -16,6 +17,7 @@ export interface BulletGroupProps {
 const BulletGroup : React.FC<BulletGroupProps> = ({
   bullets, children
 }) => {
+  const CSS_HANDLES = ["bullet__container"]
   const {isMobile} = useDevice()
   const {list} = useListContext() || []
   const list2 = useListContext()
@@ -23,6 +25,7 @@ const BulletGroup : React.FC<BulletGroupProps> = ({
   console.log({list})
   console.log(list2)
 
+  const handles = useCssHandles(CSS_HANDLES)
   const bulletsContent = getBulletAsTSXList(bullets)
   const newListContextValue = list.concat(bulletsContent)
   if(false){
@@ -34,7 +37,11 @@ const BulletGroup : React.FC<BulletGroupProps> = ({
     {
       isMobile
       ?
-      <div>{bulletsContent}</div>
+      <div
+        className= {handles["bullet__container"]}
+      >
+        {bulletsContent}
+      </div>
       :
       // children is going to be the slider that we pass on store theme
       children

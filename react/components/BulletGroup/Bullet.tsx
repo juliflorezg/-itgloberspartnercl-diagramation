@@ -3,7 +3,9 @@ import React from 'react'
 import { Link } from 'vtex.render-runtime'
 import { LinkProps } from './BulletsTypes'
 // import { useRuntime } from 'vtex.render-runtime'
-// import {useCssHandles} from 'vtex.css-handles'
+import { useCssHandles } from 'vtex.css-handles'
+
+import "./styles.css"
 
 type Props = {
   src: string
@@ -12,12 +14,20 @@ type Props = {
 }
 
 export const Bullet = ({ src, bulletTitle, link }: Props) => {
+  const CSS_HANDLES = [
+    "bullet__item",
+    "bullet__item--title",
+    "bullet__item--image",
+    "bullet__item--link"
+  ]
+  const handles = useCssHandles(CSS_HANDLES)
   console.log("Datos para mi bullet", src, bulletTitle, link);
+  console.log(handles)
   return (
-    <div>
-      <Link to={link.url}>
-        <p>Mi imagen {src}</p>
-        <p>{bulletTitle}</p>
+    <div className={handles.bullet__item}>
+      <Link to={link.url} className = {handles["bullet__item--link"]}>
+        <img className={`${handles["bullet__item--image"]} externalClass`} src={src} alt={bulletTitle} />
+        <p className={handles["bullet__item--title"]} >{bulletTitle}</p>
       </Link>
     </div>
     )
